@@ -24,41 +24,55 @@ Once QEMU is running, follow these steps to access and configure Windows Server:
 
 After configuration is complete, compress the Windows Server image. Replace xxxx with your chosen Windows version (e.g., windows10):
 
+```
 dd if=windowsxxxx.img | gzip -c > windowsxxxx.gz
+```
 
 3. Install Apache
 
 Install Apache to serve the compressed file over the web:
 
+```
 apt install apache2
+```
 
 4. Allow Apache through the Firewall
 
 Grant Apache access through the firewall:
 
+```
 sudo ufw allow 'Apache'
+```
 
 5. Move the Windows Server File to the Web Directory
 
 Copy the compressed Windows Server file to Apache’s web directory:
 
+```
 cp windowsxxxx.gz /var/www/html/
+```
 
 6. Get the Download Link
 
 After moving the file, you can access it through your droplet’s IP address:
 
+```
 http://[Your_Droplet_IP]/windowsxxxx.gz
+```
 
 Example:
 
+```
 http://188.166.190.241/windows10.gz
+```
 
 7. Deploy Windows Server on a New Droplet
 
 To run Windows Server on a new droplet, use the following command. Replace LINK with your actual download link:
 
+```
 wget -O- --no-check-certificate LINK | gunzip | dd of=/dev/vda
+```
 
 Important Notes:
 	•	Replace xxxx with the correct Windows version.

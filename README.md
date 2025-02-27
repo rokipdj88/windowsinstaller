@@ -78,6 +78,5 @@ Important Notes:
 	•	Replace xxxx with the correct Windows version.
 	•	Make sure to use the correct download link for your file.
 
-Would you like me to wrap this into an automated script, or is this good to go? Let me know! 🚀
 
 Buy VPS/RDP at : [https://t.me/candrapn](https://t.me/candrapn)

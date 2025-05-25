@@ -20,6 +20,8 @@ echo -e "Join our Telegram channel: https://t.me/NTExhaust"
 sleep 5
 
 
+#!/bin/bash
+
 # Function to display menu and get user choice
 display_menu() {
     echo "Please select the Windows Server or Windows version:"
@@ -42,43 +44,46 @@ apt install qemu-system-x86-xen -y
 apt install qemu-system-x86 -y
 apt install qemu-kvm -y
 
-# Open port 5900 for VNC access
-ufw allow 5900/tcp
-
-echo "QEMU installation completed successfully. Port 5900 opened for VNC."
+echo "QEMU installation completed successfully."
 
 # Get user choice
 display_menu
 
 case $choice in
     1)
+        # Windows Server 2016
         img_file="windows2016.img"
         iso_link="https://go.microsoft.com/fwlink/p/?LinkID=2195174&clcid=0x409&culture=en-us&country=US"
         iso_file="windows2016.iso"
         ;;
     2)
+        # Windows Server 2019
         img_file="windows2019.img"
         iso_link="https://go.microsoft.com/fwlink/p/?LinkID=2195167&clcid=0x409&culture=en-us&country=US"
         iso_file="windows2019.iso"
         ;;
     3)
+        # Windows Server 2022
         img_file="windows2022.img"
         iso_link="https://go.microsoft.com/fwlink/p/?LinkID=2195280&clcid=0x409&culture=en-us&country=US"
         iso_file="windows2022.iso"
         ;;
     4)
+        # Windows 10
         img_file="windows10.img"
-        iso_link="http://134.199.163.87/WIN10.iso"
+        iso_link="http://134.122.76.13/WIN10.ISO"
         iso_file="windows10.iso"
         ;;
     5)
+        # Windows 11
         img_file="windows11.img"
-        iso_link="http://134.199.163.87/WIN11.iso"
+        iso_link="http://134.122.76.13/WIN11.ISO"
         iso_file="windows11.iso"
         ;;
     6)
+        # Windows 1021h2
         img_file="windows1021h2.img"
-        iso_link="http://134.199.163.87/win1021H2.img"
+        iso_link="http://134.122.76.13/win1021H2.img"
         iso_file="windows1021h2.iso"
         ;;
     *)
@@ -103,16 +108,3 @@ echo "Virtio driver ISO downloaded successfully."
 wget -O "$iso_file" "$iso_link"
 
 echo "Windows ISO downloaded successfully."
-
-# Start QEMU instance
-qemu-system-x86_64 \
-    -m 4G \
-    -cpu host \
-    -enable-kvm \
-    -boot order=d \
-    -drive file="$iso_file",media=cdrom \
-    -drive file="$img_file",format=raw,if=virtio \
-    -drive file=virtio-win.iso,media=cdrom \
-    -device usb-ehci,id=usb,bus=pci.0,addr=0x4 \
-    -device usb-tablet \
-    -vnc :0

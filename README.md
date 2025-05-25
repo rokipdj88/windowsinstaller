@@ -10,9 +10,10 @@ wget https://github.com/rokipdj88/windowsinstaller/raw/main/installer.sh -O inst
 ```
 Follow the instruction.
 
-Press Enter twice
-4. Run QEMU
+Run QEMU
+
 Change xx (example windows10.iso):
+
 ```
 qemu-system-x86_64 \
 -m 4G \
@@ -28,7 +29,7 @@ qemu-system-x86_64 \
 ```
 
 
-1. Access via VNC
+1. Access via VNC (YOUR IP)
 
 Once QEMU is running, follow these steps to access and configure Windows Server:
 	•	Enable Remote Desktop in Windows Server settings.

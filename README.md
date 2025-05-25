@@ -11,6 +11,21 @@ wget https://github.com/rokipdj88/windowsinstaller/raw/main/installer.sh -O inst
 Follow the instruction.
 
 Press Enter twice
+4. Run QEMU
+Change xx (example windows10.iso):
+```
+qemu-system-x86_64 \
+-m 4G \
+-cpu host \
+-enable-kvm \
+-boot order=d \
+-drive file=windowsxx.iso,media=cdrom \
+-drive file=windowsxx.img,format=raw,if=virtio \
+-drive file=virtio-win.iso,media=cdrom \
+-device usb-ehci,id=usb,bus=pci.0,addr=0x4 \
+-device usb-tablet \
+-vnc :0
+```
 
 
 1. Access via VNC
